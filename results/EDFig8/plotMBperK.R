@@ -1,4 +1,3 @@
-setwd("~/Local/Research/Code/centipede/ctpbeliefmoran/results")
 library(magrittr)
 library(tidyr)
 library(tidyverse)
