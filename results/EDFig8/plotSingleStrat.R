@@ -1,4 +1,3 @@
-setwd("~/Local/Research/Code/centipede/ctpbeliefmoran/results")
 library(magrittr)
 library(tidyr)
 library(dplyr)
@@ -6,8 +5,6 @@ library(ggplot2)
 library(reshape2)
 library(ggtext)
 library(tidyverse)
-
-#read all the files
 
 flist<-c("beliefanalytical.csv", "avgbelief0.csv","avgbelief0001.csv","avgbelief001.csv")
 
