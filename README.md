@@ -71,7 +71,7 @@ In `main.cpp` there are 13 parameters that can be set.These are
 - `mut` Mutation probability (default value is 0.0).
 - `runs` Number of repititions of the simulation (default value is 100.0).
 - `iterations` Number of steps of the moran process (default value is 10^7).
-- `cist` Cost associated with each additional reasoning level (default value is 0.0).
+- `cost` Cost associated with each additional reasoning level (default value is 0.0).
 
 
 In `main.cpp` there is 1 function that provides the results  to reproduce the data in the Extended Data Figure 8:
