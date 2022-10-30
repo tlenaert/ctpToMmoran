@@ -55,7 +55,7 @@ which should produce an executable `ctpmoran`.
 
 
 # Demo
-When executing `ctpmoran` without modifications in the `main.cpp`, the program will produce for an ICG with L=4 the results for β=0.3 and ε=0.18. It will run 100 times 10^7 iterations.
+When executing `ctpmoran` without modifications in the `main.cpp`, the program will produce for an ICG with L=4 the results for β=0.3 and ε=0.18. It will run 100 times 10^7 iterations. One run for 10^8 iterations takes around 29000 seconds or 8 hours.
 
 In `main.cpp` there are 13 parameters that can be set.These are
 - `length` The length of the ICG (default value is 4).
