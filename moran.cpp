@@ -174,21 +174,36 @@ bool Moran::moranStepPairwise(unsigned& step, Population* pop, RanGen* ran, Stra
     }
     
     int test = pop->converged();
-    if(test != -1){ //jump froward to the next mutation once converged
+    if(_mut> 0 && test != -1){ //jump froward to the next mutation once converged
 //        cout << *pop << "\t";
         unsigned jump = ran->rangeometric(_mut);
-        // force mutation to new state
-        unsigned loc = ran->ranval(0,pop->numStrats()-1);
-//        cout << *pop << endl;
-        while(loc == test)
-            loc = ran->ranval(0,pop->numStrats()-1);
-        pop->swap(test,loc,1);
-//        cout << *pop << endl;
-        //update state
-        located->second.increase(jump-1);
-//        cout << located->second << endl;
-        step += (jump-1);
-//        cout << "jumped " << (jump-1) << endl;
+	if(jump < (_iterations - step)){
+        	// force mutation to new state
+        	unsigned loc = ran->ranval(0,pop->numStrats()-1);
+//        	cout << *pop << endl;
+        	while(loc == test)
+            		loc = ran->ranval(0,pop->numStrats()-1);
+        	pop->swap(test,loc,1);
+//        	cout << *pop << endl;
+        	//update state
+        	located->second.increase(jump-1);
+//        	cout << located->second << endl;
+        	step += jump;
+//        	cout << "jumped " << (jump-1) << endl;
+		State tmpp(pop, space);
+            	auto located = storage.find(tmpp.index()); //change this to a string key; concatenation of all values in distribution.
+            	if(located == storage.end()){
+                	located = storage.insert(make_pair(tmpp.index(), tmpp)).first;
+            	}
+            	else {
+                	located->second.increase(1);
+            	}
+	}
+        else {
+          	located->second.increase(_iterations-step-1);
+		step=_iterations;
+		cout << "Wanted to jump beyond number of iterations; " << (step+jump) << endl;
+	}
     }
     selected.clear();
     return true;
@@ -233,8 +248,10 @@ bool Moran::execute(Population* pop, RanGen* ran, StrategySpace* space, unsigned
 
     // average appearance of startegy over all states is stored in _composition
     double total = 0.0;
+    unsigned visits=0;
     for(auto iter = storage.begin(); iter != storage.end(); iter++ ){
         State tmp = iter->second;
+        visits+= tmp.visits();
         for(unsigned i = 0; i < tmp.size(); i++){
             if(tmp[i]>0){
                 double val = double(tmp.visits()) * (double(tmp[i])/double(_psize));
@@ -243,13 +260,15 @@ bool Moran::execute(Population* pop, RanGen* ran, StrategySpace* space, unsigned
         }
         total+=1.0;
     }
-
-    cout << "states collected = " << round(total) << ", steps in moran " << round(steps) << endl;
+    cout << "states collected = " << round(total) << ", total visits " << visits << ", steps in moran " << round(steps) << endl;
+    double test=0.0;
     
     for(unsigned i=0; i < _composition->size; i++){
         double val = gsl_vector_get(_composition, i);
         gsl_vector_set(_composition, i, (val / (double(steps))));
+        test += (val / (double(steps)));
     }
+    cout << "Sum distrib = " << test << endl;
     storage.clear();
     return true;
 }

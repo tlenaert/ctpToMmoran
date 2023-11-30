@@ -97,8 +97,8 @@ bool Strategy::inferR1Decision(CtpGame* game, unsigned& R1, unsigned& R2){
 }
 
 bool Strategy::inferDecision(CtpGame* game){
-    unsigned tmpR1 = ((_belief1%2!=0 && _belief1 < game->length())?_belief1+1:_belief1); //when can one take
-    unsigned tmpR2 = ((_belief2 !=game->length() && _belief2%2==0)?_belief2+1:_belief2); //when can two take
+    unsigned tmpR1 = _belief1; //((_belief1%2!=0 && _belief1 < game->length())?_belief1+1:_belief1); //when can one take
+    unsigned tmpR2 = _belief2; //((_belief2 !=game->length() && _belief2%2==0)?_belief2+1:_belief2); //when can two take
     unsigned level=0;
     while(level < _level){
         unsigned testR1(tmpR1);
@@ -126,8 +126,8 @@ int Strategy::addNoise(RanGen* ran, CtpGame* game, int base, double epsilon){
 
 
 bool Strategy::stochasticInferDecision(CtpGame* game, double epsilon, RanGen* ran){
-    unsigned tmpR1 = ((_belief1%2!=0 && _belief1 < game->length())?_belief1+1:_belief1); //when can one take
-    unsigned tmpR2 = ((_belief2 !=game->length() && _belief2%2==0)?_belief2+1:_belief2); //when can two take
+    unsigned tmpR1 = _belief1;//((_belief1%2!=0 && _belief1 < game->length())?_belief1+1:_belief1); //when can one take
+    unsigned tmpR2 = _belief2;//((_belief2 !=game->length() && _belief2%2==0)?_belief2+1:_belief2); //when can two take
     unsigned level=0;
     while(level < _level){
         unsigned testR1(tmpR1);

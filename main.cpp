@@ -298,39 +298,48 @@ void runMoranSimulations(unsigned psize, double beta, double epsilon, double mut
 
 
 int main(int argc, char * argv[]) {
+
+    //settings specific for icremental centiped game
     unsigned length = 4;
     double first = 0.4;
     double second = 0.1;
     double factor= 2.0;
+
     unsigned levels = length;
     unsigned maxlevel=4;
-    double epsilon=0.18;
+
+    //reasoning stochasticity
+    double epsilon=0.19;
     unsigned repeats=50000;
+
+    
+    //evolution specific
     unsigned psize = 500;
-    double betas=0.3;
-    double mut = 0.0;
-    unsigned runs=100;
+    double betas=0.31;
+    double mut = 0.0001;  
+    unsigned runs=10;
     unsigned iterations = 10000000;
+
+    //additional parameters not yet used
     double cost = 0.0;
 
     //output filenames
     stringstream ss1;
-    ss1 << "./ctplevelsL" << maxlevel << ".txt";
+    ss1 << "ctplevelsL" << maxlevel << ".txt";
     string lfname(ss1.str());
     stringstream ss2;
-    ss2 << "./ctpbeliefsL" << maxlevel << ".txt";
+    ss2 << "ctpbeliefsL" << maxlevel << ".txt";
     string bfname(ss2.str());
     stringstream ss3;
-    ss3 << "./ctpstepsL" << maxlevel << ".txt";
+    ss3 << "ctpstepsL" << maxlevel << ".txt";
     string sfname(ss3.str());
     stringstream ss4;
-    ss4 << "./ctpdecisionsL" << maxlevel << ".txt";
+    ss4 << "ctpdecisionsL" << maxlevel << ".txt";
     string dfname(ss4.str());
     stringstream ss5;
-    ss5 << "./ctpmisbeliefL" << maxlevel << ".txt";
+    ss5 << "ctpmisbeliefL" << maxlevel << ".txt";
     string mfname(ss5.str());
 
-   
     
     cout << "Settings: ";
     cout << "psize(" << psize << "),  Beta-s(" << betas << "), Eps(" << epsilon << "), ";

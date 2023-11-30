@@ -19,13 +19,7 @@
 
 using namespace std;
 
-//A strategy is a level k strategy that determines its action as a stochastic best response to
-//the action of a level k-1 strategist.
-//At the lowest level L0 a specifc behavior is chose.
-// in Kawagoe, T., & Takizawa, H. (2012). Level-k analysis of experimental centipede games. Journal of Economic Behavior & Organization, 82(2-3), 548-566
-// L0 strategies are considered, either an altruist who passes the amount to the end or
-//a random strategy which T or P with equal probability at every stage of the game and
-//
+
 
 class Strategy {
 public:
