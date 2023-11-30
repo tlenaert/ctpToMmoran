@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/559573606.svg)](https://zenodo.org/doi/10.5281/zenodo.10230224)
+
 # ctpToMmoran
 
 This C++ code was used to produce the Moran simulations discussed in the paper T. Lenaerts, J.M. Pacheco and F.C. Santos (2022) Evolution of a theory of mind. 
